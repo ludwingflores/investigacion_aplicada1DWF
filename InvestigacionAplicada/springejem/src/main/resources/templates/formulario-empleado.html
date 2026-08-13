@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Empleado</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 40px;
+        }
+
+        form {
+            width: 400px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #198754;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            margin-left: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Empleado</h1>
+
+<form th:action="@{/empleados/guardar}"
+      th:object="${empleado}"
+      method="post">
+
+    <input type="hidden"
+           th:field="*{id}">
+
+    <label>
+        Nombre:
+    </label>
+
+    <input type="text"
+           th:field="*{nombre}"
+           required>
+
+    <label>
+        Apellido:
+    </label>
+
+    <input type="text"
+           th:field="*{apellido}"
+           required>
+
+    <label>
+        Puesto:
+    </label>
+
+    <input type="text"
+           th:field="*{puesto}"
+           required>
+
+    <label>
+        Salario:
+    </label>
+
+    <input type="number"
+           step="0.01"
+           th:field="*{salario}"
+           required>
+
+    <button type="submit">
+        Guardar
+    </button>
+
+    <a th:href="@{/empleados}">
+        Cancelar
+    </a>
+
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Empleados</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 40px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            background-color: #198754;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .editar {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .eliminar {
+            color: #dc3545;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Gestión de Empleados</h1>
+
+<a class="btn"
+   th:href="@{/empleados/nuevo}">
+    Nuevo empleado
+</a>
+
+<table>
+
+    <thead>
+
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Puesto</th>
+        <th>Salario</th>
+        <th>Acciones</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr th:each="empleado : ${empleados}">
+
+        <td th:text="${empleado.id}"></td>
+
+        <td th:text="${empleado.nombre}"></td>
+
+        <td th:text="${empleado.apellido}"></td>
+
+        <td th:text="${empleado.puesto}"></td>
+
+        <td th:text="${empleado.salario}"></td>
+
+        <td>
+
+            <a class="editar"
+               th:href="@{/empleados/editar/{id}(id=${empleado.id})}">
+                Editar
+            </a>
+
+            |
+
+            <a class="eliminar"
+               th:href="@{/empleados/eliminar/{id}(id=${empleado.id})}"
+               onclick="return confirm('¿Eliminar empleado?')">
+                Eliminar
+            </a>
+
+        </td>
+
+    </tr>
+
+    </tbody>
+
+</table>
+
+</body>
+
+</html>
